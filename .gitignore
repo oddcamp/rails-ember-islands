@@ -25,3 +25,5 @@
 
 # Ignore uploaded test images.
 /public/uploads
+/node_modules
+/bower_components
