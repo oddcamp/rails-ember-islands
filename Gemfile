@@ -36,3 +36,5 @@ end
 gem "ember-cli-rails"
 gem "js-routes"
 
+
+gem 'rails_12factor', group: [:staging, :production]
