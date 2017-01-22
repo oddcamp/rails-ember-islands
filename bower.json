@@ -1,0 +1,17 @@
+{
+  "name": "sample_app_4th_ed",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Filippos Vasilakis <vasilakisfil@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kollegorna/rails-ember-islands",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
