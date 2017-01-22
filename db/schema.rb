@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20160609220802) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "microposts", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "picture"
-    t.index ["user_id"], name: "index_microposts_on_user_id"
+    t.index ["user_id"], name: "index_microposts_on_user_id", using: :btree
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -26,9 +29,9 @@ ActiveRecord::Schema.define(version: 20160609220802) do
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,7 +47,8 @@ ActiveRecord::Schema.define(version: 20160609220802) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "microposts", "users"
 end
