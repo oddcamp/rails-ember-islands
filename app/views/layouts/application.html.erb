@@ -6,9 +6,11 @@
     <%= stylesheet_link_tag    'application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_ember_script_tags :frontend, prepend: "/" %>
+    <%= include_ember_stylesheet_tags :frontend, prepend: "/" %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body data-no-turbolink>
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |message_type, message| %>
@@ -17,6 +19,7 @@
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
+
     </div>
   </body>
 </html>

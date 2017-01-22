@@ -100,6 +100,14 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def as_ember_json
+    {
+      id: id,
+      name: name,
+      gravatar_id: gravatar_id
+    }
+  end
+
   private
 
     # Converts email to all lower-case.
@@ -111,6 +119,10 @@ class User < ApplicationRecord
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+    def gravatar_id
+      Digest::MD5::hexdigest(email.downcase)
     end
 end
 

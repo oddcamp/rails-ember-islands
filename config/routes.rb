@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount_ember_assets :frontend, to: "/"#, controller: :static_pages, action: :home
+
   root   'static_pages#home'
   get    '/help',    to: 'static_pages#help'
   get    '/about',   to: 'static_pages#about'
@@ -12,6 +14,10 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :ember_users, only: [:index]
+
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]

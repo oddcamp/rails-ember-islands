@@ -1,0 +1,6 @@
+<ul class="users">
+  {{#each model as |user|}}
+    {{user-list-item tagName="li" model=user session=session}}
+  {{/each}}
+</ul>
+

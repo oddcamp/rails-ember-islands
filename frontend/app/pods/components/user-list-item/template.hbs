@@ -1,0 +1,20 @@
+{{let modalIsOpen=(Boolean false)}}
+
+<img src="{{gravatarLink}}" class="gravatar" alt={{model.name}}>
+<a href={{userPath}}>{{model.name}}</a>
+
+{{#if session.currentUser.admin}}
+  | <a href="#" {{action modalIsOpen.toggle}}>delete</a>
+{{/if}}
+
+{{#if modalIsOpen}}
+  {{#modal-dialog}}
+    <p>You sure?</p>
+    <button {{action modalIsOpen.toggle}} class="btn btn-info" role="button">
+      Cancel
+    </button>
+    <a rel="nofollow" data-method="delete" href={{userPath}} class="btn btn-info" role="button">
+      Yes
+    </a>
+  {{/modal-dialog}}
+{{/if}}
